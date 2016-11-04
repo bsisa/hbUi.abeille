@@ -1,0 +1,636 @@
+
+/* 
+Although this ng-cloak CSS is already available in angular.js 
+including it here prevents flicker issue to occur between a view 
+is first loaded and before Angular has had a chance to run.
+*/
+[ng\:cloak],   
+[ng-cloak],   
+[data-ng-cloak],   
+[x-ng-cloak],   
+.ng-cloak,   
+.x-ng-cloak {  
+	display: none !important;  
+}  
+
+/**
+Have ng-click change on mouse hover.
+*/
+[ng-click],
+[data-ng-click],
+[x-ng-click] {
+    cursor: pointer;
+}
+
+
+colgroup col.phase {
+  background-color: #eeeeee;
+  border: solid 1px grey;
+}
+
+/* Remove arrows on input field of type number */
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+/* Remove arrows on input field of type number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+
+/* ngGrid */
+.modalGridStyle {
+    border: 1px solid rgb(212,212,212);
+    width: auto; 
+    height: 390px;
+}
+
+
+/* Make ui.bootstrap tooltip max-width wider */
+.tooltip-inner {
+    max-width: 450px;
+}
+/* Solves style cursors issues with empty href attributes in ui.bootstrap compared to Bootstrap */
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+.configuration-item {
+    cursor: pointer;
+}
+
+.total {
+	font-weight:bold;
+}
+
+.invst {
+	color:black;
+	font-weight:bold;
+}
+.fctmt {
+	color:grey;
+	font-weight:bold;
+}
+
+tr.subtotal {
+	border-top: solid black 2px
+}
+
+tr.grandtotal {
+	border-top: double black 4px
+}
+
+.hb-date-em {
+	color:red;
+}
+
+td.date {
+    text-align: center;
+} 
+
+td.number {
+    text-align: right;
+}
+
+/*
+	Same background-color as input.ng-dirty.ng-valid
+*/
+.hb-dirty {
+	background-color: #CFC !important;  
+}
+
+.hb-row-header {
+	background-color: white;
+}
+
+.hb-cell-header {
+	border: 1px solid #DDD;
+	padding: 5px;
+	min-height: 34px;
+}
+
+.hb-row-even {
+	background-color: #F9F9F9;
+}
+.hb-row-odd {
+	background-color: white;
+}
+
+.hb-cell-row {
+	border: 1px solid #DDD;
+	padding: 5px;
+	min-height: 34px;
+}
+
+
+
+/* Align right */
+.right {
+    float: right;
+}
+
+/** Override default Bootstrap control-label alignment behaviour */
+.summary .control-label {
+	text-align:left;
+}
+
+
+th.dashboard {
+	min-width: 180px;
+}
+	
+
+/** When using table for layout instead of CSS
+*/
+table.layout {
+/*  	border: solid green 1px; */
+ 	border-collapse: collapse;  
+  	border: none;  
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+}
+
+
+/* card-container buttons bar*/
+.hb-btn-bar {
+	position: fixed;
+/* 	top: 104px; */
+ 	top: 154px;
+	left: 10px;
+	width: 36px;
+}
+
+/* top menu bar*/
+.hb-menu-bar {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+/* 	height: 48px; */
+	width: 100%;
+}
+
+.hb-menu-bar-lg-height {
+	height: 48px;
+}
+
+.hb-menu-bar-md-height {
+	height: 96px;
+}
+
+.hb-menu-bar-sm-height {
+	height: 96px;
+}
+
+.hb-menu-bar-xs-height {
+	height: 144px;
+}
+
+.hb-upload-progressbar-container {
+	position: relative;
+	padding: 0;
+}
+
+.hb-upload-progressbar {
+	position: absolute;
+	top: -26px;
+	left: 0px;
+	width: 100%;
+}
+
+/* alert panels floating a fixed position under top menu bar*/
+.hb-alert-panel-fixed-top {
+	position: fixed;
+	top: 16px;
+	left: 0px;
+	right: 0px;
+	border: none;
+	z-index: 1001;
+}
+/* alert panels contained in hb-alert-panel-fixed-top providing centered position */
+.hb-alert-panel-center {
+	width: 60%;
+	margin: auto;
+}
+
+.menu li.search-wrapper {
+/* 	border: solid red 1px; */
+	float: left;
+    height: 46px;
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 10px 0px 0px 4px;
+	min-width:190px;
+	width:190px;
+}
+
+.menu ul {
+    max-width: 300%;
+    width:250px;
+}
+
+.menu li.has-menu ul li a {
+    padding: 12px 20px;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    list-style: none;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+}
+
+
+
+
+button:hover {
+    background: none;
+}
+
+
+.search {
+    width:70%;
+}
+
+::-webkit-input-placeholder {
+    padding: 10px 0;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    padding: 10px 0;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+    padding: 10px 0;
+}
+
+:-ms-input-placeholder {
+    padding: 10px 0;
+}
+
+.hb-tab {
+	padding: 10px;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;	
+}
+
+.summary {
+	padding-top: 8px;
+	padding-right: 40px;
+	padding-bottom: 20px;
+	padding-left: 40px;
+}
+
+.hb-card {
+/* 	border: 2px solid pink; */
+	padding-top: 48px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+}
+
+/* div.hb-card-header { */
+/* 	border: 2px solid red; */
+/* 	background-color: lightblue; */
+/* 	padding: 10px; */
+/* } */
+
+div.hb-card-content {
+	border: 1px solid #ddd;
+	background-color: white;
+	padding: 0px;
+}
+
+.notifications {
+	border: 1px solid #ddd;
+    padding: 0px;
+    background: #fff;
+}
+
+.chosen-container-single .chosen-single {
+    height: 29px;
+    margin-bottom: 10px;
+}
+
+.chosen-container {
+    min-width: 100%;
+    max-width: 100%;
+}
+
+.chosen-container.chosen-with-drop .chosen-drop {
+    top: 29px;
+}
+
+/* form.vertical .form_datepicker input { */
+/*     display: inline-block; */
+/*     margin-bottom: 0; */
+/*     vertical-align: middle; */
+/*     width: auto; */
+/* } */
+
+ul.button-bar li a,
+ul.nav-tabs li,
+a [class^="icon-"]
+{
+    cursor: pointer;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    /*
+      Introduced in IE 10.
+      See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+    */
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+
+/* .form_datepicker table { */
+/*     border-spacing: 2px; */
+/*     margin: 0; */
+/* } */
+
+/* .form_datepicker thead th { */
+/*     padding: 0px 4px; */
+/*     text-align: center; */
+
+/* } */
+
+/* .form_datepicker td { */
+/*     padding: 1px; */
+/* } */
+
+/* .form_datepicker .btn { */
+/*     display: inline-block; */
+/*     padding: 4px 12px; */
+/*     margin-bottom: 0; */
+/*     font-size: 14px; */
+/*     line-height: 20px; */
+/*     text-align: center; */
+/*     vertical-align: middle; */
+/*     cursor: pointer; */
+/*     color: #333333; */
+/*     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75); */
+/*     background-color: #f5f5f5; */
+/*     background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6); */
+/*     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6)); */
+/*     background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6); */
+/*     background-image: -o-linear-gradient(top, #ffffff, #e6e6e6); */
+/*     background-image: linear-gradient(to bottom, #ffffff, #e6e6e6); */
+/*     background-repeat: repeat-x; */
+/*     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0); */
+/*     border-color: #e6e6e6 #e6e6e6 #bfbfbf; */
+/*     border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); */
+/*     filter: progid:DXImageTransform.Microsoft.gradient(enabled = false); */
+/*     border: 1px solid #cccccc; */
+/*     border-bottom-color: #b3b3b3; */
+/*     -webkit-border-radius: 4px; */
+/*     -moz-border-radius: 4px; */
+/*     border-radius: 4px; */
+/*     -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05); */
+/*     -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05); */
+/*     box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05); */
+/* } */
+
+/* .form_datepicker .btn-info { */
+/*     color: #ffffff; */
+/*     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); */
+/*     background-color: #49afcd; */
+/*     background-image: -moz-linear-gradient(top, #5bc0de, #2f96b4); */
+/*     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5bc0de), to(#2f96b4)); */
+/*     background-image: -webkit-linear-gradient(top, #5bc0de, #2f96b4); */
+/*     background-image: -o-linear-gradient(top, #5bc0de, #2f96b4); */
+/*     background-image: linear-gradient(to bottom, #5bc0de, #2f96b4); */
+/*     background-repeat: repeat-x; */
+/*     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff2f96b4', GradientType=0); */
+/*     border-color: #2f96b4 #2f96b4 #1f6377; */
+/*     border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); */
+/*     filter: progid:DXImageTransform.Microsoft.gradient(enabled = false); */
+/* } */
+
+/* .form_datepicker .btn-block { */
+/*     display: block; */
+/*     width: 100%; */
+/*     padding-left: 0; */
+/*     padding-right: 0; */
+/*     -webkit-box-sizing: border-box; */
+/*     -moz-box-sizing: border-box; */
+/*     box-sizing: border-box; */
+/* } */
+
+/* .form_datepicker .btn[disabled] { */
+/*     cursor: default; */
+/*     background-image: none; */
+/*     opacity: 0.65; */
+/*     filter: alpha(opacity=65); */
+/*     -webkit-box-shadow: none; */
+/*     -moz-box-shadow: none; */
+/*     box-shadow: none; */
+/* } */
+
+/* .form_datepicker .btn-group { */
+/*     position: relative; */
+/*     display: inline-block; */
+/*     font-size: 0; */
+/*     vertical-align: middle; */
+/*     white-space: nowrap; */
+/* } */
+
+.centre {
+    text-align: center;
+}
+
+/*
+
+#map {
+    position: absolute;
+    top: 44px;
+    right: 0;
+    bottom: 0;
+    left: 736px;
+    margin: 10px;
+    border: solid 1px whitesmoke;
+}
+
+#map1 {
+    position: absolute;
+    top: 44px;
+    right: 0;
+    bottom: 49%;
+    left: 736px;
+    margin: 10px;
+    border: solid 1px whitesmoke;
+}
+
+#map2 {
+    position: absolute;
+    top: 51%;
+    right: 0;
+    bottom: 0;
+    left: 736px;
+    margin: 10px;
+    border: solid 1px whitesmoke;
+}
+
+*/
+
+.loading {
+	clear:both;
+	float:left; 
+	border: none;
+    background: url(/assets/images/ajax-loader.gif) transparent no-repeat;
+    height: 40px;
+    width: 40px;
+    vertical-align:middle;
+}
+
+
+/**********************************************************************
+	Change background depending on ng-form dirty / pristine state 
+/*********************************************************************/
+form.ng-dirty {
+	transition:0.5s linear all;
+    background-color: #FFCCCC;
+}
+form.ng-pristine {
+	transition:0.5s linear all;
+    background-color: white;
+}
+
+input.ng-pristine {
+    background-color: white;
+	transition:0.5s linear all;
+}
+input.ng-dirty.ng-invalid {
+    background-color: #FFCCCC ;
+    border: dotted red 1px;
+	transition:0.5s linear all;
+}
+input.ng-dirty.ng-valid {
+    background-color: #CCFFCC;
+    border: dotted green 1px;
+	transition:0.5s linear all;
+}
+
+textarea.ng-pristine {
+    background-color: white;
+    transition:0.5s linear all;
+}
+textarea.ng-dirty.ng-invalid {
+    background-color: #FFCCCC ;
+    border: dotted red 1px;
+	transition:0.5s linear all;
+}
+textarea.ng-dirty.ng-valid {
+    background-color: #CCFFCC;
+    border: dotted green 1px;
+	transition:0.5s linear all;
+}
+
+select.ng-pristine {
+    background-color: white;
+    transition:0.5s linear all;
+}
+select.ng-dirty.ng-invalid {
+    background-color: #FFCCCC ;
+    border: dotted red 1px;
+	transition:0.5s linear all;
+}
+select.ng-dirty.ng-valid {
+    background-color: #CCFFCC;
+    border: dotted green 1px;
+	transition:0.5s linear all;
+}
+
+
+/**********************************************************************
+    Preserve modal form, input background and borders 
+**********************************************************************/
+div.modal-body.ng-dirty {
+    background-color: white;
+}
+/* Do not set modal input background to green when pristine */
+div.modal-body.ng-pristine {
+    background-color: white;
+}
+
+.modal-body form.ng-dirty {
+    background-color: white;
+}
+.modal-body form.ng-pristine {
+    background-color: white;
+}
+
+.modal-body input.ng-pristine {
+    background-color: white;
+}
+.modal-body input.ng-dirty {
+    background-color: white;
+    border: 1px solid #CCC;
+}
+.modal-body input.ng-dirty.ng-valid {
+    background-color: white;
+    border: 1px solid #CCC;
+}
+/* Define OK buttons width for all modal dialogs */
+div.modal-footer button.btn-primary {
+	width: 200px;
+}
+
+/**********************************************************************
+    Orders related styling
+**********************************************************************/
+
+.order-sum {
+	font-weight: bold;
+}
+
+
+/*********************************************************************/
+
+
+/* Disable kickstart padding in bootstrap */
+ul.nav-tabs li {
+    padding:0;
+}
+
+div.tabbable div.tab-content {
+    border: none;
+}
+
+
+div.col-xs-1.splitViewMargin {
+    width: 10px;
+}
+
+div.col-xs-10.card-view.splitViewMargin {
+    width: auto;
+}
+
+
+div.map-view-wrapper {
+    padding-top: 48px;
+}

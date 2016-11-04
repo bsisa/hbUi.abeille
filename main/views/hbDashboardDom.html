@@ -1,0 +1,147 @@
+
+<!-- 
+Stade et terrain / stadium
+Piscine / pool
+Patinoire / rink
+Salle / hall
+Place de sport / sports area
+Droit de superficie et autre infra./ surface right
+ -->
+<table class="table table-condensed table-bordered table-striped" >
+	<tbody>
+		<tr>
+			<th class="dashboard" style="width: 33%;">Immeuble{{ immeubleElfins.length | plural }} <span class="badge">{{immeubleElfins.length}}</span></th>
+			<th class="dashboard" >Bâtiment{{ immeubleBatAgricoleElfins.length | plural }} agricole{{ immeubleBatAgricoleElfins.length | plural }} <span class="badge">{{immeubleBatAgricoleElfins.length}}</span></th>			
+			<th class="dashboard" style="width: 33%;">Bâtiment{{ immeubleBatLocatifElfins.length | plural }} locatif{{ immeubleBatLocatifElfins.length | plural }} <span class="badge">{{immeubleBatLocatifElfins.length}}</span></th>
+		</tr>
+		<tr>
+			<td ><img ng-click="listOrViewImmeuble()" src="/assets/images/dom_immeuble.jpeg" ng-src="/assets/images/dom_immeuble.jpeg" class="img-thumbnail" style="width: 150px; height: 105px;"></td>
+			<td ><img ng-click="listOrViewBatAgricole()" src="/assets/images/dom_bat_agricole.jpeg" ng-src="/assets/images/dom_bat_agricole.jpeg" class="img-thumbnail" style="width: 150px; height: 105px;"></td>
+			<td ><img ng-click="listOrViewBatLocatif()" src="/assets/images/dom_bat_locatif.jpeg" ng-src="/assets/images/dom_bat_locatif.jpeg" class="img-thumbnail" style="width: 150px; height: 105px;"></td>
+		</tr>
+		<tr>
+			<th >		
+				Sélection <span class="badge">{{filteredImmeubleElfins.length}}</span>
+				<div class="right">
+					<div class="btn-group">	
+					<label ng-repeat="immeublesActiveState in immeublesActiveStates" for="{{immeublesActiveState.value}}">
+	     						{{immeublesActiveState.label}}
+						<input type="radio"
+							ng-value="immeublesActiveState.value"
+	            					id="{{immeublesActiveState.value}}"
+	            					name="immeubleActiveState.value" 
+							ng-model="immeubleSearch.active" >&nbsp;&nbsp;
+					</label>
+					</div>				
+					<button tabindex="2" class="btn btn-primary btn-xs" ng-click="listOrViewImmeuble()" ng-disabled="filteredImmeubleElfins.length < 1">
+						<span ng-show="filteredImmeubleElfins.length > 1"><i class="glyphicon glyphicon-list-alt"></i></span>
+						<span ng-show="filteredImmeubleElfins.length <= 1"><i class="glyphicon glyphicon-eye-open"></i></span>
+					</button>
+				</div>			
+			</th>
+			<th >Sélection  <span class="badge">{{immeubleBatAgricoleElfins.length}}</span>
+				<div class="right">
+					<button tabindex="4" class="btn btn-primary btn-xs" ng-click="listOrViewBatAgricole()" ng-disabled="immeubleBatAgricoleElfins.length < 1">
+						<span ng-show="immeubleBatAgricoleElfins.length > 1"><i class="glyphicon glyphicon-list-alt"></i></span>
+						<span ng-show="immeubleBatAgricoleElfins.length <= 1"><i class="glyphicon glyphicon-eye-open"></i></span>
+					</button>
+				</div>			
+			</th>
+			<th >Sélection  <span class="badge">{{immeubleBatLocatifElfins.length}}</span>
+				<div class="right">
+					<button tabindex="6" class="btn btn-primary btn-xs" ng-click="listOrViewBatLocatif()" ng-disabled="immeubleBatLocatifElfins.length < 1">
+						<span ng-show="immeubleBatLocatifElfins.length > 1"><i class="glyphicon glyphicon-list-alt"></i></span>
+						<span ng-show="immeubleBatLocatifElfins.length <= 1"><i class="glyphicon glyphicon-eye-open"></i></span>
+					</button>
+				</div>			
+			</th>
+		</tr>
+		<tr>
+			<th >
+				<div class="form-group">
+					<div class="col-sm-12" style="padding-left: 0; padding-right: 0;padding-top: 0;">
+						<input hb-enter="listOrViewImmeuble()" tabindex="1" id="immeubleSearchTextInput" name="immeubleSearchTextInput" type="text" class="form-control" ng-model="immeubleSearch.text" hb-no-dirty-check placeholder="">
+					</div>
+				</div>
+			</th>
+			<th >
+				<div class="form-group">
+					<div class="col-sm-12" style="padding-left: 0; padding-right: 0;padding-top: 0;">
+						<input hb-enter="listOrViewBatAgricole()" tabindex="9" id="immeubleBatAgricoleSearchTextInput" name="immeubleBatAgricoleSearchTextInput" type="text" class="form-control" ng-model="immeubleBatAgricoleSearch.text" hb-no-dirty-check placeholder="">
+					</div>
+				</div>
+			</th>
+			<th >
+				<div class="form-group">
+					<div class="col-sm-12" style="padding-left: 0; padding-right: 0;padding-top: 0;">
+						<input hb-enter="listOrViewBatLocatif()" tabindex="5" id="immeubleBatLocatifSearchTextInput" name="immeubleBatLocatifSearchTextInput" type="text" class="form-control" ng-model="immeubleBatLocatifSearch.text" hb-no-dirty-check placeholder="">
+					</div>
+				</div>
+			</th>
+		</tr>
+	</tbody>
+</table>
+<table class="table table-condensed table-bordered table-striped" >
+	<tbody>
+		<tr>
+			<th class="dashboard" style="width: 33%;">Unité{{ filteredLocationUnitElfins.length | plural }} locative{{ filteredLocationUnitElfins.length | plural }} <span class="badge">{{filteredLocationUnitElfins.length}}</span></th>
+			<th class="dashboard" >Terrain{{ immeubleTerrainDdpElfins.length | plural }} – D.D.P. <span class="badge">{{immeubleTerrainDdpElfins.length}}</span></th>
+			<th class="dashboard" style="width: 33%;">Hangar{{ immeubleHangarDepotElfins.length | plural }} et dépôt{{ immeubleHangarDepotElfins.length | plural }} <span class="badge">{{immeubleHangarDepotElfins.length}}</span></th>
+		</tr>
+		<tr>
+			<td ><img ng-click="listOrViewlocationUnit()" src="/assets/images/dom_unite_locative.jpeg" ng-src="/assets/images/dom_unite_locative.jpeg" class="img-thumbnail" style="width: 150px; height: 105px;"></td>
+			<td ><img ng-click="listOrViewTerrainDdp()" src="/assets/images/dom_terrain_ddp.jpeg" ng-src="/assets/images/dom_terrain_ddp.jpeg" class="img-thumbnail" style="width: 150px; height: 105px;"></td>
+			<td ><img ng-click="listOrViewHangarDepot()" src="/assets/images/dom_hangar_depot.jpeg" ng-src="/assets/images/dom_hangar_depot.jpeg" class="img-thumbnail" style="width: 150px; height: 105px;"></td>
+		</tr>
+		<tr>
+			<th >Sélection  <span class="badge">{{filteredLocationUnitElfins.length}}</span>
+				<div class="right">
+					<button tabindex="8" class="btn btn-primary btn-xs" ng-click="listOrViewlocationUnit()" ng-disabled="filteredLocationUnitElfins.length < 1">
+						<span ng-show="filteredLocationUnitElfins.length > 1"><i class="glyphicon glyphicon-list-alt"></i></span>
+						<span ng-show="filteredLocationUnitElfins.length <= 1"><i class="glyphicon glyphicon-eye-open"></i></span>
+					</button>
+				</div>			
+			</th>
+			<th >Sélection  <span class="badge">{{immeubleTerrainDdpElfins.length}}</span>
+				<div class="right">
+					<button tabindex="10" class="btn btn-primary btn-xs" ng-click="listOrViewTerrainDdp()" ng-disabled="immeubleTerrainDdpElfins.length < 1">
+						<span ng-show="immeubleTerrainDdpElfins.length > 1"><i class="glyphicon glyphicon-list-alt"></i></span>
+						<span ng-show="immeubleTerrainDdpElfins.length <= 1"><i class="glyphicon glyphicon-eye-open"></i></span>
+					</button>
+				</div>			
+			</th>
+			<th >Sélection  <span class="badge">{{immeubleHangarDepotElfins.length}}</span>
+				<div class="right">
+					<button tabindex="12" class="btn btn-primary btn-xs" ng-click="listOrViewHangarDepot()" ng-disabled="immeubleHangarDepotElfins.length < 1">
+						<span ng-show="immeubleHangarDepotElfins.length > 1"><i class="glyphicon glyphicon-list-alt"></i></span>
+						<span ng-show="immeubleHangarDepotElfins.length <= 1"><i class="glyphicon glyphicon-eye-open"></i></span>
+					</button>
+				</div>			
+			</th>
+		</tr>
+		<tr>
+			<th >
+				<div class="form-group">
+					<div class="col-sm-12" style="padding-left: 0; padding-right: 0;padding-top: 0;">
+						<input hb-enter="listOrViewlocationUnit()" tabindex="7" id="locationUnitSearchTextInput" name="locationUnitSearchTextInput" type="text" class="form-control" ng-model="locationUnitSearch.text" hb-no-dirty-check placeholder="">
+					</div>
+				</div>
+			</th>
+			<th >
+				<div class="form-group">
+					<div class="col-sm-12" style="padding-left: 0; padding-right: 0;padding-top: 0;">
+						<input hb-enter="listOrViewTerrainDdp()" tabindex="9" id="immeubleTerrainDdpSearchTextInput" name="immeubleTerrainDdpSearchTextInput" type="text" class="form-control" ng-model="immeubleTerrainDdpSearch.text" hb-no-dirty-check placeholder="">
+					</div>
+				</div>
+			</th>
+			<th >
+				<div class="form-group">
+					<div class="col-sm-12" style="padding-left: 0; padding-right: 0;padding-top: 0;">
+						<input hb-enter="listOrViewHangarDepot()" tabindex="11" id="immeubleHangarDepotSearchTextInput" name="immeubleHangarDepotSearchTextInput" type="text" class="form-control" ng-model="immeubleHangarDepotSearch.text" hb-no-dirty-check placeholder="">
+					</div>
+				</div>
+			</th>
+		</tr>
+	</tbody>
+</table>
+

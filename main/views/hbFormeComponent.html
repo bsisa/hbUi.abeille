@@ -1,0 +1,187 @@
+
+<div class="panel" ng-class="coordinateType.css">
+	<div class="panel-heading">
+		<div class="btn-group">
+			<label hb-no-dirty-check class="btn btn-primary"
+				ng-model="coordinateType" btn-radio="COORDINATE_TYPE.GEOGRAPHIC">{{COORDINATE_TYPE.GEOGRAPHIC.label}}</label>
+			<label hb-no-dirty-check class="btn btn-success"
+				ng-model="coordinateType" btn-radio="COORDINATE_TYPE.SCHEMATIC">{{COORDINATE_TYPE.SCHEMATIC.label}}</label>
+		</div>
+	</div>
+	<div class="panel-body">
+	
+	<!-- POINTS -->
+	<div class="well well-lg">
+		<div hb-collapse hb-collapse-title="Point" hb-collapse-init-collapsed="true">
+		
+		<div ng-if="eagerDomCreation.FORM">
+		
+		<table class="table table-condensed table-bordered table-striped">
+			<thead>
+				<tr>
+					<th rowspan="{{coordinateType === COORDINATE_TYPE.GEOGRAPHIC ? 3 : 2;}}" class="col-md-1" style="vertical-align: top;">POS</th>
+					<th rowspan="{{coordinateType === COORDINATE_TYPE.GEOGRAPHIC ? 3 : 2;}}" class="col-md-1" style="vertical-align: top;">FONCTION</th>
+					<th class="col-md-3 label label-primary" ng-show="coordinateType === COORDINATE_TYPE.GEOGRAPHIC">X</th>
+					<th class="col-md-3 label label-success" ng-show="coordinateType === COORDINATE_TYPE.SCHEMATIC">XS</th>
+					<th class="col-md-3 label label-primary" ng-show="coordinateType === COORDINATE_TYPE.GEOGRAPHIC">Y</th>
+					<th class="col-md-3 label label-success" ng-show="coordinateType === COORDINATE_TYPE.SCHEMATIC">YS</th>
+					<th class="col-md-3 label label-primary" ng-show="coordinateType === COORDINATE_TYPE.GEOGRAPHIC">Z</th>
+					<th class="col-md-3 label label-success" ng-show="coordinateType === COORDINATE_TYPE.SCHEMATIC">ZS</th>					
+				</tr>
+				<tr ng-show="coordinateType === COORDINATE_TYPE.GEOGRAPHIC">
+					<th class="col-md-3 label label-primary" >XG</th>
+					<th class="col-md-3 label label-primary" >YG</th>
+					<th class="col-md-3 label label-primary" >ZG</th>				
+				</tr>
+				<tr>					
+					<th class="col-md-3" >CLASSE</th>
+					<th class="col-md-3" >Id</th>
+					<th class="col-md-3" >ID_G</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat-start="point in elfin.FORME.POINT">
+					<td rowspan="{{coordinateType === COORDINATE_TYPE.GEOGRAPHIC ? 3 : 2;}}"><input type="text" class="form-control"
+						ng-model="point.POS"></td>
+					<td rowspan="{{coordinateType === COORDINATE_TYPE.GEOGRAPHIC ? 3 : 2;}}"><input type="text" class="form-control"
+						ng-model="point.FONCTION"></td>
+					<td ng-show="coordinateType === COORDINATE_TYPE.GEOGRAPHIC" ><input type="number" class="form-control" ng-model="point.X"></td>
+					<td ng-show="coordinateType === COORDINATE_TYPE.GEOGRAPHIC"><input type="number" class="form-control" ng-model="point.Y"></td>
+					<td ng-show="coordinateType === COORDINATE_TYPE.GEOGRAPHIC"><input type="number" class="form-control" ng-model="point.Z"></td>
+					<td ng-show="coordinateType === COORDINATE_TYPE.SCHEMATIC" ><input type="number" class="form-control" ng-model="point.XS"></td>
+					<td ng-show="coordinateType === COORDINATE_TYPE.SCHEMATIC"><input type="number" class="form-control" ng-model="point.YS"></td>
+					<td ng-show="coordinateType === COORDINATE_TYPE.SCHEMATIC"><input type="number" class="form-control" ng-model="point.ZS"></td>
+				</tr>
+				<tr ng-show="coordinateType === COORDINATE_TYPE.GEOGRAPHIC">
+					<td><input type="number" class="form-control" ng-model="point.XG"></td>
+					<td><input type="number" class="form-control" ng-model="point.YG"></td>
+					<td><input type="number" class="form-control" ng-model="point.ZG"></td>
+				</tr>
+				<tr ng-repeat-end>
+					<td><input type="text" class="form-control"
+						ng-model="point.CLASSE"></td>
+					<td><input type="text" class="form-control"
+						ng-model="point.Id"></td>
+					<td><input type="text" class="form-control"
+						ng-model="point.ID_G"></td>
+				<tr>
+			</tbody>
+		</table>
+		
+		</div>
+		
+		</div>
+		</div>
+		
+		<!-- LIGNES -->
+		<div class="well well-lg">
+		<div hb-collapse hb-collapse-title="Lignes" hb-collapse-init-collapsed="true">
+		
+		<div ng-if="eagerDomCreation.FORM" >
+		
+		<table class="table table-condensed table-bordered table-striped">
+			<thead>
+				<tr>
+					<th class="col-md-1">POS</th>
+					<th class="col-md-1">FONCTION</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat-start="ligne in elfin.FORME.LIGNE">
+					<td ><input type="text" class="form-control"
+						ng-model="ligne.POS"></td>
+					<td ><input type="text" class="form-control"
+						ng-model="ligne.FONCTION"></td>
+				</tr>
+				<tr ng-repeat-end>
+					<td colspan="2">
+					<table class="table table-condensed table-bordered table-striped">
+						<thead>
+							<tr>
+								<th class="col-md-1">CLASSE</th>
+								<th class="col-md-1">FONCTION</th>
+								<th class="col-md-1">ID_G</th>
+								<th class="col-md-1">Id</th>
+								<th class="col-md-1">ANGLES</th>
+								<th class="col-md-1">KSIS</th>
+								<th class="col-md-1">ANGLE</th>
+								<th class="col-md-1">KSI</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="passage in ligne.PASSAGE">
+								<td><input type="text" class="form-control"	ng-model="passage.CLASSE"></td>
+								<td><input type="text" class="form-control"	ng-model="passage.FONCTION"></td>
+								<td><input type="text" class="form-control"	ng-model="passage.ID_G"></td>
+								<td><input type="text" class="form-control"	ng-model="passage.Id"></td>
+								<td><input type="number" class="form-control"	ng-model="passage.ANGLES"></td>
+								<td><input type="number" class="form-control"	ng-model="passage.KSIS"></td>
+								<td><input type="number" class="form-control"	ng-model="passage.ANGLE"></td>
+								<td><input type="number" class="form-control"	ng-model="passage.KSI"></td>
+							</tr>
+						</tbody>
+					</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		</div>
+			
+		</div>	
+		</div>
+		
+		<!-- ZONES -->
+		<div class="well well-lg">
+		<div hb-collapse hb-collapse-title="Zones" hb-collapse-init-collapsed="true">
+		<table class="table table-condensed table-bordered table-striped">
+			<thead>
+				<tr>
+					<th class="col-md-1">POS</th>
+<!-- 					<th class="col-md-1">FONCTION</th> -->
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat-start="zone in elfin.FORME.ZONE">
+					<td ><input type="text" class="form-control"
+						ng-model="zone.POS"></td>
+<!-- 					<td ><input type="text" class="form-control" -->
+<!-- 						ng-model="zone.FONCTION"></td> -->
+				</tr>
+				<tr ng-repeat-end>
+					<td colspan="2">
+					<table class="table table-condensed table-bordered table-striped">
+						<thead>
+							<tr>
+<!-- 								<th class="col-md-1">CLASSE</th> -->
+<!-- 								<th class="col-md-1">FONCTION</th> -->
+								<th class="col-md-1">ID_G</th>
+								<th class="col-md-1">Id</th>
+<!-- 								<th class="col-md-1">ANGLES</th> -->
+<!-- 								<th class="col-md-1">KSIS</th> -->
+<!-- 								<th class="col-md-1">ANGLE</th> -->
+<!-- 								<th class="col-md-1">KSI</th> -->
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="zligne in zone.LIGNE">
+<!-- 								<td><input type="text" class="form-control"	ng-model="zligne.CLASSE"></td> -->
+<!-- 								<td><input type="text" class="form-control"	ng-model="zligne.FONCTION"></td> -->
+								<td><input type="text" class="form-control"	ng-model="zligne.ID_G"></td>
+								<td><input type="text" class="form-control"	ng-model="zligne.Id"></td>
+<!-- 								<td><input type="number" class="form-control"	ng-model="zligne.ANGLES"></td> -->
+<!-- 								<td><input type="number" class="form-control"	ng-model="zligne.KSIS"></td> -->
+<!-- 								<td><input type="number" class="form-control"	ng-model="zligne.ANGLE"></td> -->
+<!-- 								<td><input type="number" class="form-control"	ng-model="zligne.KSI"></td> -->
+							</tr>
+						</tbody>
+					</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>	
+		</div>	
+		</div>		
+	</div>
+<!-- 	<div class="panel-footer">Panel footer</div> -->
+</div>

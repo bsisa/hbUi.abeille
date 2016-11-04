@@ -1,0 +1,202 @@
+
+<table class="table table-condensed table-bordered table-striped" >
+	<tbody>
+		<tr>
+			<th class="dashboard" style="width: 33%;">Immeuble{{ immeubleElfins.length | plural }} <span class="badge">{{immeubleElfins.length}}</span></th>
+			<th class="dashboard">Unité{{ uniteLocElfins.length | plural }} locative{{ uniteLocElfins.length | plural }} <span class="badge">{{uniteLocElfins.length}}</span></th>
+			<th class="dashboard" style="width: 33%;">Fontaine{{ fontaineElfins.length | plural }} et monument{{ fontaineElfins.length | plural }} <span class="badge">{{fontaineElfins.length}}</th>
+		</tr>
+		<tr>
+			<td ><img ng-click="listOrViewImmeuble()" src="/api/melfin/annex/G20040930101030005/G20040203114943000/photo.jpg" ng-src="/api/melfin/annex/G20040930101030005/G20040203114943000/photo.jpg" class="img-thumbnail" style="width: 150px; height: 105px;"></td>
+			<td ><img ng-click="listOrViewUniteLoc()" src="/api/melfin/annex/G20040930101030005/G20040203114833000/Photo.jpg" ng-src="/api/melfin/annex/G20040930101030005/G20040203114833000/Photo.jpg" class="img-thumbnail" style="width: 150px; height: 105px;"></td>
+			<td ><img ng-click="listOrViewFontaines()" src="/assets/images/fontaine.jpeg" ng-src="/assets/images/fontaine.jpeg" class="img-thumbnail" style="width: 150px; height: 105px;"></td>
+		</tr>
+		<tr>
+			<th >		
+				Sélection <span class="badge">{{filteredImmeubleElfins.length}}</span>
+				<div class="right">
+					<div class="btn-group">	
+					<label ng-repeat="immeublesActiveState in immeublesActiveStates" for="{{immeublesActiveState.value}}">
+	     						{{immeublesActiveState.label}}
+						<input type="radio"
+							ng-value="immeublesActiveState.value"
+	            					id="{{immeublesActiveState.value}}"
+	            					name="immeubleActiveState.value" 
+							ng-model="immeubleSearch.active" >&nbsp;&nbsp;
+					</label>
+					</div>				
+					<button tabindex="2" class="btn btn-primary btn-xs" ng-click="listOrViewImmeuble()" ng-disabled="filteredImmeubleElfins.length < 1">
+						<span ng-show="filteredImmeubleElfins.length > 1"><i class="glyphicon glyphicon-list-alt"></i></span>
+						<span ng-show="filteredImmeubleElfins.length <= 1"><i class="glyphicon glyphicon-eye-open"></i></span>
+					</button>
+				</div>			
+			</th>
+			<th >Sélection  <span class="badge">{{filteredUniteLocElfins.length}}</span>
+				<div class="right">
+					<button tabindex="4" class="btn btn-primary btn-xs" ng-click="listOrViewUniteLoc()" ng-disabled="filteredUniteLocElfins.length < 1">
+						<span ng-show="filteredUniteLocElfins.length > 1"><i class="glyphicon glyphicon-list-alt"></i></span>
+						<span ng-show="filteredUniteLocElfins.length <= 1"><i class="glyphicon glyphicon-eye-open"></i></span>						
+					</button>
+				</div>			
+			</th>
+			<th >Sélection  <span class="badge">{{filteredFontaineElfins.length}}</span>
+				<div class="right">
+					<button tabindex="6" class="btn btn-primary btn-xs" ng-click="listOrViewFontaines()" ng-disabled="filteredFontaineElfins.length < 1">
+						<span ng-show="filteredFontaineElfins.length > 1"><i class="glyphicon glyphicon-list-alt"></i></span>
+						<span ng-show="filteredFontaineElfins.length <= 1"><i class="glyphicon glyphicon-eye-open"></i></span>
+					</button>
+				</div>						
+			</th>			
+		</tr>
+		<tr>
+			<th >
+				<div class="form-group">
+					<div class="col-sm-12" style="padding-left: 0; padding-right: 0;padding-top: 0;">
+						<input hb-enter="listOrViewImmeuble()" tabindex="1" id="immeubleSearchTextInput" name="immeubleSearchTextInput" type="text" class="form-control" ng-model="immeubleSearch.text" hb-no-dirty-check placeholder="">
+<!-- 						<input hb-enter="listOrViewImmeuble()" tabindex="1" id="immeubleSearchActiveInput" name="immeubleSearchActiveInput" type="text" class="form-control" ng-model="immeubleSearch.active" hb-no-dirty-check placeholder=""> -->
+					</div>
+				</div>
+			</th>
+			<th >
+				<div class="form-group">
+					<div class="col-sm-12" style="padding-left: 0; padding-right: 0;padding-top: 0;">
+						<input hb-enter="listOrViewUniteLoc()" tabindex="3" type="text" class="form-control" ng-model="uniteLocSearch.text" hb-no-dirty-check placeholder="">
+					</div>
+				</div>
+			</th>
+			<th >
+				<div class="form-group">
+					<div class="col-sm-12" style="padding-left: 0; padding-right: 0;padding-top: 0;">
+						<input hb-enter="listOrViewFontaines()"  tabindex="5" type="text" class="form-control" ng-model="fontaineSearch.text" hb-no-dirty-check placeholder="">
+					</div>
+				</div>
+			</th>
+		</tr>
+	</tbody>
+</table>
+<table class="table table-condensed table-bordered table-striped" >
+	<tbody>
+		<tr>
+			<th class="dashboard" style="width: 33%;">WC <span class="badge">{{wcElfins.length}}</th>
+			<th class="dashboard">Horloge{{ horlogeElfins.length | plural }} <span class="badge">{{horlogeElfins.length}}</th>
+			<th class="dashboard" style="width: 33%;">Abribus <span class="badge">{{abribusElfins.length}}</th>
+		</tr>
+		<tr>
+			<td ><img ng-click="listOrViewWcs()" src="/assets/images/wc.jpeg" ng-src="/assets/images/wc.jpeg" class="img-thumbnail" style="width: 150px; height: 105px;"></td>
+			<td ><img ng-click="listOrViewHorloges()" src="/assets/images/horloge.jpeg" ng-src="/assets/images/horloge.jpeg" class="img-thumbnail" style="width: 150px; height: 105px;"></td>
+			<td ><img ng-click="listOrViewAbribus()" src="/assets/images/abribus.jpeg" ng-src="/assets/images/abribus.jpeg" class="img-thumbnail" style="width: 150px; height: 105px;"></td>
+		</tr>		
+		<tr>			
+			<th >Sélection  <span class="badge">{{filteredWcElfins.length}}</span>
+				<div class="right">
+					<button tabindex="8" class="btn btn-primary btn-xs" ng-click="listOrViewWcs()" ng-disabled="filteredWcElfins.length < 1">
+						<span ng-show="filteredWcElfins.length > 1"><i class="glyphicon glyphicon-list-alt"></i></span>
+						<span ng-show="filteredWcElfins.length <= 1"><i class="glyphicon glyphicon-eye-open"></i></span>
+					</button>
+				</div>						
+			</th>
+			<th >Sélection  <span class="badge">{{horlogeElfins.length}}</span>
+				<div class="right">
+					<button tabindex="10" class="btn btn-primary btn-xs" ng-click="listOrViewHorloges()" ng-disabled="horlogeElfins.length < 1">
+						<span ng-show="horlogeElfins.length > 1"><i class="glyphicon glyphicon-list-alt"></i></span>
+						<span ng-show="horlogeElfins.length <= 1"><i class="glyphicon glyphicon-eye-open"></i></span>
+					</button>
+				</div>							
+			</th>
+			<th >Sélection  <span class="badge">{{abribusElfins.length}}</span>
+				<div class="right">
+					<button tabindex="12" class="btn btn-primary btn-xs" ng-click="listOrViewAbribus()" ng-disabled="abribusElfins.length < 1">
+						<span ng-show="abribusElfins.length > 1"><i class="glyphicon glyphicon-list-alt"></i></span>
+						<span ng-show="abribusElfins.length <= 1"><i class="glyphicon glyphicon-eye-open"></i></span>
+					</button>
+				</div>							
+			</th>
+		</tr>
+		<tr>
+			<th >
+				<div class="form-group">
+					<div class="col-sm-12" style="padding-left: 0; padding-right: 0;padding-top: 0;">
+						<input hb-enter="listOrViewWcs()" tabindex="7" id="wcSearchTextInput" name="wcSearchTextInput" type="text" class="form-control" ng-model="wcSearch.text" hb-no-dirty-check placeholder="">
+					</div>
+				</div>
+			</th>
+			<th >
+				<div class="form-group">
+					<div class="col-sm-12" style="padding-left: 0; padding-right: 0;padding-top: 0;">
+					</div>
+				</div>
+			</th>
+			<th >
+				<div class="form-group">
+					<div class="col-sm-12" style="padding-left: 0; padding-right: 0;padding-top: 0;">
+					</div>
+				</div>
+			</th>
+		</tr>		
+	</tbody>
+</table>
+<table ng-if="canManageOrders" class="table table-condensed table-bordered table-striped" >
+	<tbody>
+		<tr>
+			<th class="dashboard" style="width: 33%;"> </th>
+			<th class="dashboard">Commande{{ commandeElfins.length | plural }} <span class="badge">{{commandeElfins.length}}</th>
+			<th class="dashboard" style="width: 33%;"> </th>
+		</tr>
+		<tr>
+			<td ><div style="width: 150px; height: 105px;"></div></td>
+			<td >
+<!-- 				<div class="col-xs-12 visible-xs">xs</div> -->
+<!-- 				<div class="col-sm-12 visible-sm">sm</div> -->
+<!-- 				<div class="col-md-12 visible-md">md</div> -->
+<!-- 				<div class="col-lg-12 visible-lg">lg</div> -->
+				<div class="col-lg-4 col-md-12" style="padding-left: 0; padding-right: 0;">
+					<img ng-click="listOrViewCommandes()" src="/assets/images/commandes.jpeg" ng-src="/assets/images/commandes.jpeg" class="img-thumbnail" style="width: 150px; height: 105px;">
+				</div>
+				<div class="col-lg-8 col-md-12" style="padding-left: 0; padding-right: 0; padding-top: 4px; height: 52px;">
+					<button class="btn btn-default col-lg-offset-1 col-lg-10 col-md-12" ng-click="createNewCommande()" tooltip="Créer une nouvelle commande" tooltip-popup-delay="1000" tooltip-placement="right" ><i class="glyphicon glyphicon-plus-sign"></i><span> Nouvelle commande</span></button>
+				</div>
+				<div class="col-lg-8 col-md-12" style="padding-left: 0; padding-right: 0; height: 52px;" >
+<!-- 					<label for="commandeSearchIdInput" class="col-xs-2 control-label" style="padding-top: 4px; height: 52px;">Id</label> -->
+ 					<div class="col-lg-offset-1 col-lg-10 col-md-12" style="padding-left: 0; padding-right: 0;">
+						<input class="form-control" hb-enter="findById(commandeSearch.id)" tabindex="15" id="commandeSearchIdInput" name="commandeSearchIdInput" type="text" ng-model="commandeSearch.id" hb-no-dirty-check placeholder="Id COMMANDE">
+ 					</div>
+				</div>
+			</td>
+			<td ><div style="width: 150px; height: 105px;"></div></td>
+		</tr>		
+		<tr>			
+			<th ></th>
+			<th >Sélection  <span class="badge">{{filteredCommandeElfins.length}}</span>
+				<div class="right">
+					<button tabindex="16" class="btn btn-primary btn-xs" ng-click="listOrViewCommandes()" ng-disabled="filteredCommandeElfins.length < 1">
+						<span ng-show="filteredCommandeElfins.length > 1"><i class="glyphicon glyphicon-list-alt"></i></span>
+						<span ng-show="filteredCommandeElfins.length <= 1"><i class="glyphicon glyphicon-eye-open"></i></span>
+					</button>
+				</div>							
+			</th>
+			<th ></th>
+		</tr>
+		<tr>
+			<th >
+				<div class="form-group">
+					<div class="col-sm-12" style="padding-left: 0; padding-right: 0;padding-top: 0;">
+					</div>
+				</div>
+			</th>
+			<th >
+				<div class="form-group">
+					<div class="col-sm-12" style="padding-left: 0; padding-right: 0;padding-top: 0;">
+						<input hb-enter="listOrViewCommandes()" tabindex="15" id="commandeSearchTextInput" name="commandeSearchTextInput" type="text" class="form-control" ng-model="commandeSearch.text" hb-no-dirty-check placeholder="">
+					</div>
+				</div>
+			</th>
+			<th >
+				<div class="form-group">
+					<div class="col-sm-12" style="padding-left: 0; padding-right: 0;padding-top: 0;">
+					</div>
+				</div>
+			</th>
+		</tr>		
+	</tbody>
+</table>
+

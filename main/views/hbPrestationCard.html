@@ -1,0 +1,174 @@
+<div hb-card-header>
+	<!-- Custom validation message to be defined here -->
+	<span ng-show="elfinForm.alias.$error.pattern">Le budget doit être <strong>un nombre</strong> valide!</span>
+	<span ng-show="elfinForm.alias.$error.number">Le budget doit être <strong>un nombre</strong> valide!</span>
+	<span ng-show="elfinForm.alias.$error.required">Le budget <strong>doit être déterminé</strong>.</span>
+</div>
+<div class="row" style="padding-top: 8px;">
+	<div class="col-xs-12">
+		<tabset><!-- ui.bootstrap AngularJS UI tabset --> <!-- ATTRIBUTS tab -->
+		<tab> <tab-heading>Prestation </tab-heading>
+		<div class="hb-tab">
+			<div class="row">
+				<div class="form-group col-sm-4">
+					<label for="group" class="col-sm-4 control-label">Groupe</label>
+					<div id="group" class="col-sm-8" hb-single-select hb-single-select-options="prestationGroups" ng-model="elfin.GROUPE" ></div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label for="author" class="col-sm-4 control-label">Objectif</label>
+					<div class="col-sm-8">
+						<input id="author" type="text" class="form-control"
+							ng-model="elfin.IDENTIFIANT.OBJECTIF">
+					</div>
+				</div>
+<!-- 				<div class="form-group col-sm-4"> -->
+<!-- 					<label for="manager" class="col-sm-4 control-label">Responsable</label> -->
+<!-- 					<div class="col-sm-8"> -->
+<!-- 						<input id="manager" name="manager" type="text" class="form-control" -->
+<!-- 							ng-model="elfin.PARTENAIRE.GERANT.VALUE"> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+				<div class="form-group col-sm-4">
+					<label for="manager" class="col-sm-4 control-label">Responsable</label>
+					<div class="col-sm-8">
+						<div class="input-group">
+							<input id="manager" name="manager" type="text" class="form-control"
+								autocomplete="off"
+								typeahead="actor.GROUPE for actor in collaboratorActors | filter:{GROUPE: $viewValue} | limitTo:8"
+								ng-model="elfin.PARTENAIRE.GERANT.VALUE" >
+							<span class="input-group-btn"
+								tooltip="Recherche de collaborateur" tooltip-popup-delay="1500">
+								<button class="btn btn-default" type="button" hb-choose-one
+									ng-click="hbChooseOne(elfin, 'PARTENAIRE.GERANT.VALUE', collaboratorActors, 'GROUPE', actorCollaboratorChooseOneColumnsDefinition, actorChooseOneTemplate )">
+									<i class="glyphicon glyphicon-list-alt"></i>
+								</button>
+							</span>
+						</div>
+					</div>
+				</div>				
+				
+				
+				
+			</div>
+			<div class="row">
+				<div class="form-group col-sm-4">
+					<label for="goal" class="col-sm-4 control-label">Groupe
+						comptable</label>
+					<div class="col-sm-8">
+						<input id="goal" type="text" class="form-control"
+							ng-model="elfin.IDENTIFIANT.ORIGINE">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label for="alias" class="col-sm-4 control-label">Année</label>
+					<div class="col-sm-8">
+						<input id="alias" type="text" class="form-control"
+							ng-model="elfin.IDENTIFIANT.DE">
+					</div>
+				</div>
+				<div class="form-group col-sm-4 has-feedback" ng-class="getCssHasFeedback(elfinForm.owner)">
+					<label for="owner" class="col-sm-4 control-label">Propriétaire</label>
+					<div class="col-sm-8">
+						<div 
+							hb-choose-actor 
+							hb-choose-actor-id-name="owner" 
+							hb-choose-actor-elfin-form="elfinForm"
+							hb-choose-actor-model="elfin.PARTENAIRE.PROPRIETAIRE"
+							hb-choose-actor-tooltip="Recherche de propriétaire"
+							hb-choose-actor-role="Propriétaire"
+							></div>								
+					</div>
+				</div>				
+			</div>
+			<div class="row">
+				<div class="form-group col-sm-4">
+					<label for="goal" class="col-sm-4 control-label">Compte</label>
+					<div class="col-sm-8">
+						<input id="goal" type="text" class="form-control"
+							ng-model="elfin.IDENTIFIANT.COMPTE">
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label for="alias" class="col-sm-4 control-label">Budget</label>
+					<div class="col-sm-8">
+						<input id="alias" name="alias" type="number" class="form-control"
+							ng-model="elfin.IDENTIFIANT.VALEUR_A_NEUF" required>
+					</div>
+				</div>
+				<div class="form-group col-sm-4">
+					<label for="remark" class="col-sm-4 control-label">Remarque</label>
+					<div class="col-sm-8">
+						<input id="remark" name="remark" type="text" class="form-control"
+							ng-model="elfin.DIVERS.REMARQUE">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+			<div class="col-sm-12">
+				<div class="panel panel-default">
+  					<div class="panel-heading">
+						<a class="btn btn-default" type="button" tooltip="Créer une nouvelle transaction relative à la prestation courante"
+									ng-href="/elfin/create/TRANSACTION?&sai={{elfin.IDENTIFIANT.OBJECTIF}}&Id={{elfin.Id}}&ID_G={{elfin.ID_G}}">
+							<i class="icon-plus-sign"></i>
+						</a> Transactions
+					</div>
+  					<div class="panel-body">
+					<table class="table table-condensed table-bordered table-striped">
+						<thead ng-repeat-start="(key,value) in transactions | groupBy:'GROUPE'" >
+							<tr>
+								<th colspan="2">{{key}}</th>
+								<th class="col-sm-1"><a href=""
+									ng-click="deadlinePredicate = 'IDENTIFIANT.DE'; deadlineReverse=!deadlineReverse">Date</a></th>
+								<th class="col-sm-3"><a href=""
+									ng-click="deadlinePredicate = 'PARTENAIRE.FOURNISSEUR.VALUE'; deadlineReverse=!deadlineReverse">Fournisseur</a></th>
+								<th class="col-sm-4"><a href=""
+									ng-click="deadlinePredicate = 'DIVERS.REMARQUE'; deadlineReverse=!deadlineReverse">Remarque</a></th>									
+								<th class="col-sm-1"><a href=""
+									ng-click="deadlinePredicate = 'IDENTIFIANT.VALEUR_A_NEUF'; deadlineReverse=!deadlineReverse">Facturé</a></th>
+								<th class="col-sm-1"><a href=""
+									ng-click="deadlinePredicate = 'IDENTIFIANT.VALEUR'; deadlineReverse=!deadlineReverse">Payé</a></th>
+							</tr>
+						</thead>
+						<tbody ng-repeat-end>
+							<tr
+								ng-repeat="transaction in value | orderBy:deadlinePredicate:deadlineReverse">
+								<td>
+									<div hb-card-view-link hb-href="/elfin/{{transaction.ID_G}}/TRANSACTION/{{transaction.Id}}"></div>
+								</td>
+								<td><div hb-annexes-link hb-annexes-link-elfin="transaction"></div></td>
+								<td><span>{{transaction.IDENTIFIANT.DE | date}}</span></td>
+								<td><span>{{transaction.PARTENAIRE.PROPRIETAIRE.VALUE}}</span></td>
+								<td><span>{{transaction.DIVERS.REMARQUE}}</span></td>
+								<td class="number"><span>{{transaction.IDENTIFIANT.VALEUR_A_NEUF | currency:'CHF'}}</span></td>
+								<td class="number"><span>{{transaction.IDENTIFIANT.VALEUR | currency:'CHF'}}</span></td>
+							</tr>
+							<tr class="subtotal">
+								<td colspan="5" >Sous total {{key | lowercase}}</td>
+								<td class="total number">{{ (( value | map: 'IDENTIFIANT.VALEUR_A_NEUF' | map: multiplyBy100 | sum ) / 100 ) | currency:'CHF' }} </td>
+								<td class="total number">{{ (( value | map: 'IDENTIFIANT.VALEUR' | map: multiplyBy100 | sum ) / 100 ) | currency:'CHF'}} </td>
+							</tr>
+						</tbody>
+						<tfoot >
+							<tr class="grandtotal">
+								<td colspan="5" >Total</td>
+								<td class="total number">{{transactions | map: 'IDENTIFIANT.VALEUR_A_NEUF' | sum | currency:'CHF'}}</td>
+								<td class="total number">{{transactions | map: 'IDENTIFIANT.VALEUR' | sum | currency:'CHF'}}</td>
+							</tr>
+							<tr class="grandtotal">
+								<td colspan="6" >Budget</td>
+								<td class="total number">{{elfin.IDENTIFIANT.VALEUR_A_NEUF | currency:'CHF'}}</td>
+							</tr>
+							<tr class="grandtotal">
+								<td colspan="6" >Solde</td>
+								<td class="total number">{{elfin.IDENTIFIANT.VALEUR_A_NEUF - (transactions | map: 'IDENTIFIANT.VALEUR' | sum) | currency:'CHF'}}</td>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+			</div>
+		</div>
+		</div>
+		</tab> 
+		</tabset>
+	</div>
+</div>

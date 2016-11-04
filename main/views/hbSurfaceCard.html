@@ -1,0 +1,289 @@
+<div hb-card-header >
+	<!-- Custom validation message to be defined here -->
+	<span ng-show="elfinForm.email.$error.email">Le champs <strong>Email</strong> n'est pas valide</span>
+</div>
+<div class="row" style="padding-top: 8px;">
+	<div class="col-xs-12">
+		<tabset><!-- ui.bootstrap AngularJS UI tabset --> <!-- ATTRIBUTS tab -->
+		<tab active="tabState.surface.active"> <tab-heading>Unité locative <!-- <i class="icon-tag"></i> <b>Attributs</b> -->
+		</tab-heading>
+			<div class="hb-tab">
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="form-group has-feedback"
+						>
+						<label for="group" class="col-sm-4 control-label">Groupe</label>
+						<div class="col-sm-8">
+						<div hb-single-select hb-single-select-options="groupeChoices" ng-model="elfin.GROUPE" ></div>
+						</div>
+					</div>
+					<div class="form-group has-feedback"
+						>
+						<label for="objectif" class="col-sm-4 control-label">No SAI</label>
+						<div class="col-sm-8">
+							<input id="objectif" name="objectif" type="text" class="form-control"
+								ng-model="elfin.IDENTIFIANT.OBJECTIF">
+						</div>
+					</div>
+					<div class="form-group has-feedback"
+						ng-class="getCssHasFeedback(elfinForm.dateFrom)">
+						<label for="dateFrom" class="col-sm-4 control-label">Date de début</label>
+						<div class="col-sm-8">
+							<div hb-date id="dateFrom" name="dateFrom"
+								ng-model="elfin.IDENTIFIANT.DE"></div>
+						</div>
+					</div>						
+					<div class="form-group has-feedback"
+						ng-class="getCssHasFeedback(elfinForm.dateTo)">
+						<label for="dateTo" class="col-sm-4 control-label">Date de résiliation</label>
+						<div class="col-sm-8">
+							<div hb-date id="dateTo" name="dateTo"
+								ng-model="elfin.IDENTIFIANT.A"></div>
+						</div>
+					</div>						
+					<div class="form-group has-feedback"
+						>
+						<label for="car1_valeur" class="col-sm-4 control-label">Surface
+							(m2)</label>
+						<div class="col-sm-8">
+							<input id="car1_valeur" name="car1_valeur" type="text" class="form-control"
+								ng-model="elfin.CARACTERISTIQUE.CAR1.VALEUR">
+						</div>
+					</div>
+					<div class="form-group has-feedback"
+						>
+						<label for="car3_valeur" class="col-sm-4 control-label">Etage</label>
+						<div class="col-sm-8">
+							<input id="car3_valeur" name="car3_valeur" type="text" class="form-control"
+								ng-model="elfin.CARACTERISTIQUE.CAR3.VALEUR">
+						</div>
+					</div>
+					<div class="form-group has-feedback"
+						>
+						<label for="car5_valeur" class="col-sm-4 control-label">Orientation</label>
+						<div class="col-sm-8">
+							<input id="car5_valeur" name="car5_valeur" type="text" class="form-control"
+								ng-model="elfin.CARACTERISTIQUE.CAR5.VALEUR">
+						</div>
+					</div>
+					
+<!-- 					<div class="row"> -->
+<!-- 						<div class="form-group has-feedback" -->
+<!-- 							> -->
+<!-- 							<label for="origin" class="col-sm-4 control-label">ORIGINE</label> -->
+<!-- 							<div class="col-sm-8"> -->
+<!-- 								<input id="origin" name="origin" type="text" class="form-control" -->
+<!-- 									ng-model="elfin.IDENTIFIANT.ORIGINE"> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div>					 -->
+						
+<!-- Need decision whether or not moving to IMMEUBLE owner ref., node reference or text only. -->
+<!-- 					<div class="row"> -->
+<!-- 						<div class="form-group has-feedback" -->
+<!-- 							> -->
+<!-- 							<label for="owner" class="col-sm-4 control-label">Propriétaire</label> -->
+<!-- 							<div class="col-sm-8"> -->
+<!-- 								<div class="input-group"> -->
+<!-- 									<input id="locataire" name="locataire" type="text" class="form-control" -->
+<!-- 										autocomplete="off" -->
+<!-- 										typeahead="actor.GROUPE for actor in ownerActors | filter:$viewValue | limitTo:8" -->
+<!-- 										ng-model="elfin.PARTENAIRE.PROPRIETAIRE.VALUE" -->
+<!-- 										required> -->
+<!-- 									<span -->
+<!-- 										class="input-group-btn" tooltip="Recherche de propriétaire" tooltip-popup-delay="1500"> -->
+<!-- 										<button class="btn btn-default" type="button" hb-choose-one -->
+<!-- 											ng-click="hbChooseOne(elfin, 'PARTENAIRE.PROPRIETAIRE.VALUE', ownerActors, 'GROUPE', actorChooseOneColumnsDefinition, actorChooseOneTemplate )"> -->
+<!-- 											<i class="glyphicon glyphicon-list-alt"></i> -->
+<!-- 										</button> -->
+<!-- 									</span> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div>	 -->
+				</div>
+				<div class="col-sm-6">
+					<div class="form-group has-feedback"
+						>
+						<label for="locataire" class="col-sm-4 control-label">Locataire</label>
+						<div class="col-sm-8">
+							<input id="locataire" name="locataire" type="text" class="form-control"
+								ng-model="elfin.PARTENAIRE.USAGER.VALUE">
+						</div>
+					</div>
+					<div class="form-group has-feedback"
+						>
+						<label for="cellphone" class="col-sm-4 control-label">Tél. portable</label>
+						<div class="col-sm-8">
+							<input id="cellphone" name="cellphone" type="text" class="form-control"
+								ng-model="elfin.CARACTERISTIQUE.CAR2.VALEUR">
+						</div>
+					</div>
+					<div class="form-group has-feedback"
+						>
+						<label for="phone" class="col-sm-4 control-label">Tél. fixe</label>
+						<div class="col-sm-8">
+							<input id="phone" name="phone" type="text" class="form-control"
+								ng-model="elfin.CARACTERISTIQUE.CAR4.VALEUR">
+						</div>
+					</div>
+					<div class="form-group has-feedback"
+						>
+						<label for="fax" class="col-sm-4 control-label">Fax</label>
+						<div class="col-sm-8">
+							<input id="fax" name="fax" type="text" class="form-control"
+								ng-model="elfin.CARACTERISTIQUE.CAR6.VALEUR">
+						</div>
+					</div>
+					<div class="form-group has-feedback"
+						>
+						<label for="email" class="col-sm-4 control-label">Email</label>
+						<div class="col-sm-8">
+							<input id="email" name="email" type="email" class="form-control"
+								ng-model="elfin.IDENTIFIANT.ALIAS">
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12">
+					<button class="btn btn-primary col-sm-6" ng-click="archiveLocationUnit()" ng-disabled="!canArchive()"><span class="glyphicon glyphicon-plus-sign"></span> Résilier</button>
+				</div>				
+			</div>
+			</div>
+		</tab> 
+
+		<!-- COMMANDE tab --> 
+		<tab ng-if="canManageOrders" active="tabState.commande.active">
+			<tab-heading>Commandes ({{commandes.length}})</tab-heading>
+			<div class="hb-tab">
+				<div class="row">
+					<div class="col-sm-12">
+					
+					<tabset>  
+						<tab active="tabState.commande_subtab_ouvertes.active"><!-- COMMANDES 1st sub tab -->
+							<tab-heading>Commandes</tab-heading>
+							<div class="hb-tab">
+								<div class="row">
+									<div class="col-sm-12">
+									<!-- Table des commandes ouvertes -->
+										<table class="table table-condensed table-bordered table-striped">
+											<thead>
+												<tr>
+													<th colspan="2">Commande</th>
+													<th class="col-sm-2">N° commande</th>
+													<th class="col-sm-1">Code CFC</th>
+													<th class="col-sm-1">Date</th>			
+													<th class="col-sm-2">Montant</th>
+													<th class="col-sm-4">Fournisseur</th>
+										<!-- 			<th class="col-sm-2">Description</th> -->
+												</tr>												
+											</thead>
+											<tbody ng-show="commandes">
+												<tr
+													ng-repeat="commande in commandes">
+													<td><div hb-card-view-link hb-href="/elfin/{{commande.ID_G}}/COMMANDE/{{commande.Id}}"></div></td>
+													<td><div hb-annexes-link hb-annexes-link-elfin="commande"></div></td>
+													<!-- Order nb -->
+													<td class="number">{{commande.IDENTIFIANT.NOM}}</td>
+													<!-- CFC code -->
+													<td>{{commande.GROUPE}}</td>
+													<!-- Estimation/Quote date -->
+													<td class="date">{{commande.IDENTIFIANT.DE}}</td>
+													<!-- Amount -->
+													<td class="number">{{commande.IDENTIFIANT.VALEUR | currency:'CHF'}}</td>
+													<!-- Enterprise name -->
+													<td>{{commande.PARTENAIRE.FOURNISSEUR.GROUPE}}</td>				
+													<!-- Order description... -->
+<!-- 												<td>{{commande.DIVERS.REMARQUE}}</td>																 -->
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</tab>
+						<!-- COMMANDES 2nd sub tab -->
+<!-- 						<tab active="tabState.commande_subtab_closes.active"> -->
+<!-- 							<tab-heading>Commandes closes</tab-heading> -->
+<!-- 							<div class="hb-tab"> -->
+<!-- 								<div class="row"> -->
+<!-- 									<div class="col-sm-12"> -->
+<!-- 										<table class="table table-condensed table-bordered table-striped"> -->
+<!-- 											<thead> -->
+<!-- 												<tr> -->
+<!-- 													<th colspan="2">Commande</th> -->
+<!-- 													<th class="col-sm-2">N° commande</th> -->
+<!-- 													<th class="col-sm-1">Code CFC</th> -->
+<!-- 													<th class="col-sm-1">Date</th>			 -->
+<!-- 													<th class="col-sm-2">Montant</th> -->
+<!-- 													<th class="col-sm-4">Fournisseur</th> -->
+<!-- 												</tr>												 -->
+<!-- 											</thead> -->
+<!-- 											<tbody ng-show="commandes"> -->
+<!-- 												<tr -->
+<!-- 													ng-repeat="commande in commandes"> -->
+<!-- 													<td><div hb-card-view-link hb-href="/elfin/{{commande.ID_G}}/COMMANDE/{{commande.Id}}"></div></td> -->
+<!-- 													<td><div hb-annexes-link hb-annexes-link-elfin="commande"></div></td> -->
+<!-- 													<td class="number">{{commande.IDENTIFIANT.NOM}}</td> -->
+<!-- 													<td>{{commande.GROUPE}}</td> -->
+<!-- 													<td class="date">{{commande.IDENTIFIANT.DE}}</td> -->
+<!-- 													<td class="number">{{commande.IDENTIFIANT.VALEUR | currency:'CHF'}}</td> -->
+<!-- 													<td>{{commande.PARTENAIRE.FOURNISSEUR.GROUPE}}</td>				 -->
+<!-- 												</tr> -->
+<!-- 											</tbody> -->
+<!-- 										</table>									 -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</tab>						 -->
+						<!-- COMMANDES 3rd sub tab -->
+<!-- 						<tab active="tabState.commande_subtab_toutes.active"> -->
+<!-- 							<tab-heading>Commandes toutes</tab-heading> -->
+<!-- 							<div class="hb-tab"> -->
+<!-- 								<div class="row"> -->
+<!-- 									<div class="col-sm-12"> -->
+<!-- 										<table class="table table-condensed table-bordered table-striped"> -->
+<!-- 											<thead> -->
+<!-- 												<tr> -->
+<!-- 													<th colspan="2">Commande</th> -->
+<!-- 													<th class="col-sm-2">N° commande</th> -->
+<!-- 													<th class="col-sm-1">Code CFC</th> -->
+<!-- 													<th class="col-sm-1">Date</th>			 -->
+<!-- 													<th class="col-sm-2">Montant</th> -->
+<!-- 													<th class="col-sm-4">Fournisseur</th> -->
+<!-- 												</tr>												 -->
+<!-- 											</thead> -->
+<!-- 											<tbody ng-show="commandes"> -->
+<!-- 												<tr -->
+<!-- 													ng-repeat="commande in commandes"> -->
+<!-- 													<td><div hb-card-view-link hb-href="/elfin/{{commande.ID_G}}/COMMANDE/{{commande.Id}}"></div></td> -->
+<!-- 													<td><div hb-annexes-link hb-annexes-link-elfin="commande"></div></td> -->
+<!-- 													<td class="number">{{commande.IDENTIFIANT.NOM}}</td> -->
+<!-- 													<td>{{commande.GROUPE}}</td> -->
+<!-- 													<td class="date">{{commande.IDENTIFIANT.DE}}</td> -->
+<!-- 													<td class="number">{{commande.IDENTIFIANT.VALEUR | currency:'CHF'}}</td> -->
+<!-- 													<td>{{commande.PARTENAIRE.FOURNISSEUR.GROUPE}}</td>				 -->
+<!-- 												</tr> -->
+<!-- 											</tbody> -->
+<!-- 										</table>											 -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</tab> -->
+						<tab select="createNewCommande()" ng-show="!createMode"> 
+							<tab-heading tooltip="Créer une nouvelle commande relative à l'objet courant" tooltip-popup-delay="1000">Créer une nouvelle commande <i class="glyphicon glyphicon-plus-sign"></i></tab-heading>
+							<div class="hb-tab">
+							</div>
+						</tab>								
+					</tabset>			
+
+					</div>
+				</div>
+			</div>
+		</tab> 		
+		<tab active="tabState.annexe.active"> 
+			<tab-heading><div hb-annexes-number></div></tab-heading>
+			<div class="hb-tab"><div hb-annexes-component></div></div>
+		</tab>		
+		 </tabset>
+	</div>
+</div>

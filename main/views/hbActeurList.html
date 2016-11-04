@@ -1,0 +1,44 @@
+<table class="table table-condensed table-bordered table-striped"
+	ng-show="elfins">
+	<thead>
+		<tr>
+			<th colspan="{{(isCollaboratorOnly?8:5)}}"><span class="badge">{{elfinsCount}}</span> 
+			<span ng-show="!isMany">{{elfins[0].IDENTIFIANT.QUALITE}}</span><span ng-show="isMany">acteur</span>{{ elfinsCount | plural }} trouvé<span ng-show="isEntrepriseOnly">e</span>{{
+				elfinsCount | plural }}</th>
+		</tr>
+		<tr>
+			<th class="col-sm-1" />
+			<th colspan="{{(isCollaboratorOnly?7:4)}}">
+				<div class="form-group">
+					<div class="col-sm-12" style="padding-left: 0; padding-right: 0;padding-top: 0;">
+						<input type="text" class="form-control" ng-model="search.text" hb-no-dirty-check placeholder="">
+					</div>
+				</div>
+			</th>
+		</tr>		
+		<tr>
+			<th />
+			<th><a href="" ng-click="predicate = 'GROUPE'; reverse=!reverse">Groupe</a></th>
+			<th ng-show="isCollaboratorOnly"><a href="" ng-click="predicate = 'IDENTIFIANT.NOM'; reverse=!reverse">Nom de famille</a></th>
+			<th ng-show="isCollaboratorOnly"><a href="" ng-click="predicate = 'IDENTIFIANT.ALIAS'; reverse=!reverse">Prénom</a></th>
+			<th><a href="" ng-click="predicate = 'IDENTIFIANT.QUALITE'; reverse=!reverse">Rôle</a></th>
+			<th><a href="" ng-click="predicate = 'CARACTERISTIQUE.CAR4.VALEUR'; reverse=!reverse">N° de téléphone</a></th>
+			<th><a href="" ng-click="predicate = 'CARACTERISTIQUE.CARSET.CAR[0].VALEUR'; reverse=!reverse">N° de portable</a></th>			
+			<th ng-show="isCollaboratorOnly"><a href="" ng-click="predicate = 'CARACTERISTIQUE.CAR5.VALEUR'; reverse=!reverse">Email</a></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="elfin in elfins | actorListAnyFilter:search.text | orderBy:predicate:reverse">
+			<td>
+				<div hb-card-view-link hb-href="/elfin/{{elfin.ID_G}}/{{elfin.CLASSE}}/{{elfin.Id}}"></div>			
+			</td>
+			<td>{{elfin.GROUPE}}</td>
+			<td ng-show="isCollaboratorOnly">{{elfin.IDENTIFIANT.NOM}}</td>
+			<td ng-show="isCollaboratorOnly">{{elfin.IDENTIFIANT.ALIAS}}</td>
+			<td>{{elfin.IDENTIFIANT.QUALITE}}</td>
+			<td>{{elfin.CARACTERISTIQUE.CAR4.VALEUR}}</td>
+			<td>{{elfin.CARACTERISTIQUE.CARSET.CAR[0].VALEUR}}</td>
+			<td ng-show="isCollaboratorOnly">{{elfin.CARACTERISTIQUE.CAR5.VALEUR}}</td>
+		</tr>
+	</tbody>
+</table>

@@ -1,0 +1,65 @@
+<div class="panel panel-default" >
+<!-- 	<div class="panel-heading"><h4>Annexes</h4></div> -->
+	<table class="table table-condensed table-bordered table-striped">
+		<thead>
+			<tr>
+				<th class="col-md-1">Annexe</th>
+				<th ng-if="isMergeFeatureOn" class="col-md-1">Fusion</th>
+				<th class="col-md-11">Nom</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="renvoi in elfin.ANNEXE.RENVOI | annexExcludeTag:'photo'">
+				<td>
+				<table class="layout" >
+					<tr>
+						<td><a class="btn btn-default btn-xs btn-block" target="_self" ng-href="{{hbUtil.getLinkFileApiUrl(elfin.ID_G, elfin.Id, renvoi.LIEN)}}"><i class="glyphicon glyphicon-eye-open"></i></a></td>
+						<td><a class="btn btn-default btn-xs btn-block" target="_self" ng-click="deleteRenvoi(renvoi)" ><i class="glyphicon glyphicon-remove-circle"></i></a></td>
+					</tr>
+				</table>
+				</td>
+				<td ng-if="isMergeFeatureOn">
+					<table class="layout" >
+						<tr>
+							<td>
+								<a class="btn btn-default btn-xs btn-block" ng-click="merge(renvoi)">
+								<i ng-if="isMerged(renvoi)" class="glyphicon glyphicon-check"></i>
+								<i ng-if="!isMerged(renvoi)" class="glyphicon glyphicon-unchecked"></i>					
+								</a>
+							</td>
+							<td>
+								<a ng-if="!isMerged(renvoi)" class="btn btn-default btn-xs btn-block" ng-disabled="true">
+									<i class="glyphicon glyphicon-chevron-left" ></i>
+								</a>
+								<a ng-if="isMerged(renvoi)" class="btn btn-default btn-xs btn-block" ng-click="mergeBeforeAfter(renvoi)">						
+									<i ng-if="isMergedBefore(renvoi)" class="glyphicon glyphicon-chevron-left" tooltip="Fusionner avant le rapport" tooltip-popup-delay="1000"></i>
+									<i ng-if="isMergedAfter(renvoi)" class="glyphicon glyphicon-chevron-right" tooltip="Fusionner après le rapport" tooltip-popup-delay="1000"></i>					
+								</a>							
+							</td>
+							<td>
+								<a class="btn btn-default btn-xs btn-block" ng-click="moveUp(renvoi)" tooltip="Déplacer vers le haut" tooltip-popup-delay="1000">
+									<i class="glyphicon glyphicon-chevron-up"></i>
+								</a>
+							</td>
+							<td>
+								<a class="btn btn-default btn-xs btn-block" ng-click="moveDown(renvoi)" tooltip="Déplacer vers le bas" tooltip-popup-delay="1000">
+									<i class="glyphicon glyphicon-chevron-down"></i>					
+								</a>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td>{{hbUtil.getLinkFileName(renvoi.LIEN)}}</td>
+			</tr>
+		</tbody>
+	</table>
+	<!-- Non intuitive way to make at least one annex mandatory trigger form validation events 
+		Only activate required validation if hb-annexes-upload-no-validation is turned on.
+		Indeed activating annexlength validation at hb-annexes-component level requires disabling
+		hb-annexes-upload validation which would not allow upload to take place as long as 
+		annexlength validation requirement be fulfilled, thus letting the user in a dead end. -->
+ 	<div ng-show="false" >
+		<input type="number" name="annexlength" ng-model="annexesNoPhotoNb" min="{{minBound}}" ng-required="isRequired">
+	</div>
+	<div class="panel-footer"><div style="margin-bottom: 20px" hb-annexes-upload hb-annexes-upload-no-validation="{{hbAnnexesUploadNoValidation}}"></div></div>
+</div>
